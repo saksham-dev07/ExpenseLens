@@ -18,8 +18,12 @@ def create_app() -> Flask:
     # --- Configuration ---
     app.config.from_object(Config)
 
-    # Initialize CORS
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    # Initialize CORS with explicit origins for security
+    CORS(app, resources={r"/api/*": {"origins": [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://expense-lens-two.vercel.app"
+    ]}})
     limiter.init_app(app)
     
     # Initialize Firebase
