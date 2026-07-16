@@ -48,12 +48,12 @@ Our parsing pipeline is designed for maximum reliability and accuracy. It extrac
 ```mermaid
 graph TD
     A[Upload Receipt] --> B{Custom AI Parser}
-    B -- Success --> C[Structured JSON]
-    B -- Failure --> D{Tesseract OCR + Gemini}
-    D -- Success --> C
-    D -- Failure --> E{TabScanner API}
-    E -- Success --> C
-    E -- Failure --> F[Manual Review Required]
+    B -->|Success| C[Structured JSON]
+    B -->|Failure| D{Tesseract OCR + Gemini}
+    D -->|Success| C
+    D -->|Failure| E{TabScanner API}
+    E -->|Success| C
+    E -->|Failure| F[Manual Review Required]
 ```
 1. **Custom AI Parser:** Attempts to extract data using an optimized custom model.
 2. **Local Tesseract OCR + Google Gemini LLM:** If the custom model fails, it falls back to local Tesseract OCR, feeding the raw text into Gemini to intelligently structure the JSON.
