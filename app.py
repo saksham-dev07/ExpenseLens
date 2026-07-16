@@ -18,13 +18,8 @@ def create_app() -> Flask:
     # --- Configuration ---
     app.config.from_object(Config)
 
-    # Initialize CORS with restrictive origin allowlist
-    CORS(app, resources={r"/api/*": {"origins": [
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        # Add your production frontend domain here:
-        # "https://your-production-domain.com",
-    ]}})
+    # Initialize CORS
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
     limiter.init_app(app)
     
     # Initialize Firebase
