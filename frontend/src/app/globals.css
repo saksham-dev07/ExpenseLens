@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+@theme {
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-slate-900: #0f172a;
+  --color-indigo-950: #1e1b4b;
+}
+
+/* ========================================================
+   PREMIUM GLASSMORPHISM & DUAL THEME SYSTEM
+======================================================== */
+
+@layer base {
+  :root {
+    /* Background Gradient Light */
+    --bg-color-1: #f8fafc;
+    --bg-color-2: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    
+    /* Glassmorphism Variables (Light) */
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-bg-hover: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-border-hover: rgba(255, 255, 255, 1);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    
+    --primary: #6366f1;
+    --success: #10b981;
+    --danger: #ef4444;
+  }
+
+  .dark {
+    /* Dark Theme Colors */
+    --bg-color-1: #0f172a; 
+    --bg-color-2: #1e1b4b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    /* Glassmorphism Variables (Dark) */
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-bg-hover: rgba(30, 41, 59, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-hover: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    --primary: #818cf8;
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--bg-color-1) 0%, var(--bg-color-2) 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .glass-panel:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
+  }
+
+  .glass-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+  }
+  
+  .glass-input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-xl transition-all shadow-lg hover:shadow-indigo-500/30 flex items-center justify-center gap-2;
+  }
+
+  .btn-outline {
+    @apply border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium py-2 px-4 rounded-xl transition-all flex items-center justify-center gap-2;
+  }
+}

@@ -1,0 +1,32 @@
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Python caching
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment Variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Firebase Secrets
+firebase_credentials.json
+*.json.key
+
+# Logs
+logs/
+*.log
+
+# Project specific
+uploads/
+test_data/
+training/
+poppler*/
