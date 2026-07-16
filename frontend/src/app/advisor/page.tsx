@@ -7,7 +7,7 @@ import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '@/context/AuthContext';
 
-const API_BASE_URL = 'http://127.0.0.1:5000';
+import { API_BASE_URL } from '@/lib/config';
 
 export default function AdvisorPage() {
   const [advice, setAdvice] = useState<string>('');
