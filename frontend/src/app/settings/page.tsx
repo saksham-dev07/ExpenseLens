@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { User, Trash2, AlertTriangle, Shield, CheckCircle2 } from "lucide-react";
+import { API_BASE_URL } from "@/lib/config";
 
 export default function SettingsPage() {
   const { user, token, logout } = useAuth();
@@ -19,8 +20,7 @@ export default function SettingsPage() {
     setError("");
 
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
-      const response = await fetch(`${API_URL}/api/users/me`, {
+      const response = await fetch(`${API_BASE_URL}/api/users/me`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

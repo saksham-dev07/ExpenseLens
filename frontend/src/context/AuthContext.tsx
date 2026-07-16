@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
+import { API_BASE_URL } from '@/lib/config';
 
 interface User {
   id: number;
@@ -33,8 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (storedToken && storedToken !== 'undefined' && storedToken !== 'null') {
       setToken(storedToken);
       // Fetch user profile securely without trusting localStorage
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
-      fetch(`${API_URL}/api/me`, {
+      fetch(`${API_BASE_URL}/api/me`, {
         headers: { 'Authorization': `Bearer ${storedToken}` }
       })
       .then(res => res.json())
@@ -69,8 +69,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Revoke the token server-side before clearing it locally
     if (token) {
       try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
-        await fetch(`${API_URL}/api/logout`, {
+        await fetch(`${API_BASE_URL}/api/logout`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` }
         });
