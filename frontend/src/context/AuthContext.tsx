@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Clean up legacy PII from storage if it exists
     localStorage.removeItem('user');
 
-    if (storedToken) {
+    if (storedToken && storedToken !== 'undefined' && storedToken !== 'null') {
       setToken(storedToken);
       // Fetch user profile securely without trusting localStorage
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       })
       .finally(() => setIsLoading(false));
     } else {
+      localStorage.removeItem('token');
       setIsLoading(false);
     }
   }, []);
