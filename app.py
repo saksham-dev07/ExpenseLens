@@ -82,7 +82,9 @@ def create_app() -> Flask:
 
     return app
 
+# Expose app globally for WSGI servers like Gunicorn
+app = create_app()
 
 if __name__ == '__main__':
-    app = create_app()
+    # Local development server
     app.run(debug=app.config.get('DEBUG', False), host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
