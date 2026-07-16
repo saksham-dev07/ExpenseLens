@@ -63,7 +63,7 @@ export default function Dashboard() {
     }
   };
 
-  const [aiMatchedIds, setAiMatchedIds] = useState<number[] | null>(null);
+  const [aiMatchedIds, setAiMatchedIds] = useState<string[] | null>(null);
   const [isAiSearching, setIsAiSearching] = useState(false);
 
   useEffect(() => {
