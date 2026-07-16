@@ -18,11 +18,13 @@ def create_app() -> Flask:
     # --- Configuration ---
     app.config.from_object(Config)
 
-    # Initialize CORS with explicit origins for security
+    import re
+    # Initialize CORS with explicit origins and Regex for Vercel preview domains
     CORS(app, resources={r"/api/*": {"origins": [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
-        "https://expense-lens-two.vercel.app"
+        "https://expense-lens-two.vercel.app",
+        re.compile(r"https://expense-lens.*\.vercel\.app")
     ]}})
     limiter.init_app(app)
     
