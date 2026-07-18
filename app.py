@@ -86,5 +86,5 @@ def create_app() -> Flask:
 app = create_app()
 
 if __name__ == '__main__':
-    # Local development server
-    app.run(debug=app.config.get('DEBUG', False), host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    # Local development server (Defaults to 7860 for Hugging Face Gradio Space compatibility)
+    app.run(debug=app.config.get('DEBUG', False), host='0.0.0.0', port=int(os.environ.get('PORT', 7860)))
